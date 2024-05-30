@@ -1,4 +1,4 @@
-import os, time
+import os, time, asyncio
 import nest_asyncio
 # import pandas as pd
 # import numpy as np
@@ -38,8 +38,15 @@ async def send_signal(msg, chat_ids):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-
-if __name__ == "__main__":
+async def main_loop():
     while True:
-        send_signal(msg="Working from poratiner", chat_ids=["-4270402608"])
-        time.sleep(30)
+        await send_signal(msg="Working from Portainer", chat_ids=["-4270402608"]
+        await asyncio.sleep(30)
+if __name__ == "__main__":
+    try:
+        asyncio.run(main_loop())
+    except KeyboardInterrupt:
+        print("Process interrupted by user. Exiting...")
+#     while True:
+#         send_signal(msg="Working from poratiner", chat_ids=["-4270402608"])
+#         time.sleep(30)
